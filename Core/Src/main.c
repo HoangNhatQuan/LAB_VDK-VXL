@@ -93,31 +93,46 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   int count_red = 0;
   int count_yellow = 3;
+  int count_green = 4;
   while (1)
   {
     /* USER CODE END WHILE */
-	  if(count_red <= 2){ 	// set led red 2s
-		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);	//led red on
+	  if(count_red <= 5){	// set led red 5s
+		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);     // led red on
 		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET); // led yellow off
-		  if(count_red == 2){
-			  count_red = 3;
-			  count_yellow = 0;
+		  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);  // led green off
+		  if(count_red == 5){
+			count_red = 6;
+			count_yellow = 0;
 		  }
 		  count_red++;
 	  }
 	  if(count_yellow <= 2){	// set led yellow 2s
-	  		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET); //led red off
-	  		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);// led yellow on
-	  		  count_yellow++;
+	  		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);	// led red off
+	  		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_RESET);	//led yellow on
+	  		  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_SET);	// led green off
+
 	  		  if(count_yellow == 2){
-	  			  count_yellow = 3;
-	  			  count_red = 0;
+	  			count_yellow = 3;
+	  			count_green = 0;
 	  		  }
+	  		  	  count_yellow++;
 	  	  }
+	  if(count_green <= 3){	// set led green 3s
+	  	  		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_SET);	//led red off
+	  	  		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, GPIO_PIN_SET);	//led yellow off
+	  	  		  HAL_GPIO_WritePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin, GPIO_PIN_RESET);	//led green on
+	  	  		  count_green++;
+	  	  		  if(count_green == 3){
+	  	  			  count_green = 4;
+	  	  			  count_red = 0;
+	  	  		  }
+	  	  	  }
 	  HAL_Delay(1000);
 
     /* USER CODE BEGIN 3 */
   }
+
   /* USER CODE END 3 */
 }
 
